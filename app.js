@@ -1,7 +1,13 @@
 'use strict';
 
 //Globals
-
+const productImageSectionTag = document.getElementById('product-pics');
+const leftProductImageTag = document.getElementById('left-product-img');
+const centerProductImageTag = document.getElementById('center-product-img');
+const rightProductImageTag = document.getElementById('right-prodoct-img');
+const leftProductHeaderTag = document.getElementById('left-product-h2');
+const centerProductHeaderTag = document.getElementById('center-product-h2');
+const rightProductHeaderTag = document.getElementById('right-product-h2');
 
 
 
@@ -18,23 +24,23 @@ const Product = function (title, imgSrc) {
 Product.all = [];
 
 
-new Product('bag', './images/bag.jpg');
-new Product('banana', './images/banana.jpg');
-new Product('bathroom', './images/bathroom.jpg');
-new Product('boots', './images/boots.jpg');
-new Product('breakfast', './images/breakfast.jpg');
-new Product('bubblegun', './images/bubblegum.jpg');
-new Product('chair', './images/chair.jpg');
-new Product('cthulhu', './images/cthulhu.jpg');
-new Product('dog-duck', './images/dog-duck.jpg');
-new Product('dragon', './images/dragon.jpg');
-new Product('pen', './images/pen.jpg');
-new Product('pet-sweep', './images/pet-sweep.jpg');
-new Product('scissors', './images/scissors.jpg');
-new Product('shark', './images/shark.jpg');
-new Product('sweep', './images/sweep.jpg');
-new Product('tauntaun', './images/tauntaun.jpg');
-new Product('unicorn', './images/unicorn.jpg');
-new Product('usb', './images/usb.jpg');
-new Product('water-can', './images/water-can.jpg');
-new Product('wine-glass', './images/wine-glass.jpg');
+new Product('bag', './img/bag.jpg');
+new Product('banana', './img/banana.jpg');
+new Product('bathroom', './img/bathroom.jpg');
+new Product('boots', './img/boots.jpg');
+new Product('breakfast', './img/breakfast.jpg');
+new Product('bubblegun', './img/bubblegum.jpg');
+new Product('chair', './img/chair.jpg');
+new Product('cthulhu', './img/cthulhu.jpg');
+new Product('dog-duck', './img/dog-duck.jpg');
+new Product('dragon', './img/dragon.jpg');
+new Product('pen', './img/pen.jpg');
+new Product('pet-sweep', './img/pet-sweep.jpg');
+new Product('scissors', './img/scissors.jpg');
+new Product('shark', './img/shark.jpg');
+new Product('sweep', './img/sweep.jpg');
+new Product('tauntaun', './img/tauntaun.jpg');
+new Product('unicorn', './img/unicorn.jpg');
+new Product('usb', './img/usb.jpg');
+new Product('water-can', './img/water-can.jpg');
+new Product('wine-glass', './img/wine-glass.jpg');
