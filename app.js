@@ -3,14 +3,16 @@
 
 //Globals
 const productImageSectionTag = document.getElementById('product-pics');
+
 const leftProductImageTag = document.getElementById('left-product-img');
 const centerProductImageTag = document.getElementById('center-product-img');
-const rightProductImageTag = document.getElementById('right-prodoct-img');
+const rightProductImageTag = document.getElementById('right-product-img');
+
 const leftProductHeaderTag = document.getElementById('left-product-h2');
 const centerProductHeaderTag = document.getElementById('center-product-h2');
 const rightProductHeaderTag = document.getElementById('right-product-h2');
 
-const maxClicks = 25;
+const maxClicks = 5;
 let totalClicks = 0;
 
 let leftProductOnThePage = null;
@@ -50,13 +52,13 @@ function shuffle(array) {
 }
 
 //NEW DAY WORK
-//NEW DAY WORK
-//NEW DAY WORK
 const renderNewProducts = function () {
 
   leftProductImageTag.src = leftProductOnThePage.url;
   leftProductImageTag.alt = leftProductOnThePage.title;
   leftProductHeaderTag.textContent = leftProductOnThePage.title;
+
+  console.log(leftProductHeaderTag.textContent);
 
   centerProductImageTag.src = centerProductOnThePage.url;
   centerProductImageTag.alt = centerProductOnThePage.title;
@@ -65,6 +67,9 @@ const renderNewProducts = function () {
   rightProductImageTag.src = rightProductOnThePage.url;
   rightProductImageTag.alt = rightProductOnThePage.title;
   rightProductHeaderTag.textContent = rightProductOnThePage.title;
+
+  console.log(rightProductImageTag.src);
+  console.log(rightProductHeaderTag.textContent);
 };
 
 //this is my Event listener
@@ -76,15 +81,20 @@ const handleClickOnProduct = function (event) {
     const id = thingWeClickedOn.id;
 
     //track the clicks and times shown
-    if (id === 'left-product-img' || id === 'right-product-img' ||id === 'right-product-img') {
+    if (id === 'left-product-img' || id === 'center-product-img' || id === 'right-product-img') {
 
       if (id === 'left-product-img') {
         leftProductOnThePage.clicks += 1;
-      } else {
+      }
+      else if (id === 'center-product-img') {
+        centerProductOnThePage.clicks += 1;
+      }
+      else {
         rightProductOnThePage.clicks += 1;
       }
 
       leftProductOnThePage.timesShown += 1;
+      centerProductOnThePage.timesShown += 1;
       rightProductOnThePage.timesShown += 1;
 
       pickNewProduct();
@@ -103,16 +113,16 @@ const handleClickOnProduct = function (event) {
   }
 };
 
-// function renderLikes() {
-//   const likesListElem = document.getElementById('product-clicks');
-//   likesListElem.innerHTML = '';
-//   for (let i = 0; i < Product.all.length; i++) {
-//     const productPicture = Product.all[i];
-//     const productItemElem = document.createElement('li');
-//     likesListElem.appendChild(productItemElem);
-//     productItemElem.textContent = productPicture.title + ' : ' + productPicture.clicks;
-//   }
-// }
+function renderLikes() {
+  const likesListElem = document.getElementById('product-clicks');
+  likesListElem.innerHTML = '';
+  for (let i = 0; i < Product.all.length; i++) {
+    const productPicture = Product.all[i];
+    const productItemElem = document.createElement('li');
+    likesListElem.appendChild(productItemElem);
+    productItemElem.textContent = productPicture.title + ' : ' + productPicture.clicks;
+  }
+}
 
 //this ADDS the event listener
 productImageSectionTag.addEventListener('click', handleClickOnProduct);
@@ -131,10 +141,10 @@ new Product('pen', 'img/pen.jpg');
 new Product('pet-sweep', 'img/pet-sweep.jpg');
 new Product('scissors', 'img/scissors.jpg');
 new Product('shark', 'img/shark.jpg');
-new Product('sweep', 'img/sweep.jpg');
+new Product('sweep', 'img/sweep.png');
 new Product('tauntaun', 'img/tauntaun.jpg');
 new Product('unicorn', 'img/unicorn.jpg');
-new Product('usb', 'img/usb.jpg');
+new Product('usb', 'img/usb.gif');
 new Product('water-can', 'img/water-can.jpg');
 new Product('wine-glass', 'img/wine-glass.jpg');
 
