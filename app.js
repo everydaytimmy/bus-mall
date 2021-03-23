@@ -12,7 +12,7 @@ const leftProductHeaderTag = document.getElementById('left-product-h2');
 const centerProductHeaderTag = document.getElementById('center-product-h2');
 const rightProductHeaderTag = document.getElementById('right-product-h2');
 
-const maxClicks = 5;
+const maxClicks = 25;
 let totalClicks = 0;
 
 let leftProductOnThePage = null;
@@ -75,7 +75,6 @@ function shuffle(array) {
 }
 
 
-//NEW DAY WORK
 const renderNewProducts = function () {
 
   leftProductImageTag.src = leftProductOnThePage.url;
@@ -122,16 +121,19 @@ const handleClickOnProduct = function (event) {
 
   totalClicks += 1;
 
-  //when they reach total max clicks, remove the clicky function
+  //when they reach total max clicks turn it off
   if (totalClicks === maxClicks) {
     productImageSectionTag.removeEventListener('click', handleClickOnProduct);
     alert('Survey is completed. Thank you.');
 
     renderLikes();
 
+    makeProductChart();
+
   }
 };
 
+//look into this more
 function renderLikes() {
   const likesListElem = document.getElementById('product-clicks');
   likesListElem.innerHTML = '';
@@ -168,3 +170,41 @@ new Product('water-can', 'img/water-can.jpg');
 new Product('wine-glass', 'img/wine-glass.jpg');
 
 pickNewProduct();
+
+function makeProductChart() {
+
+  const productNamesArray = [];
+  const productLikesArray = [];
+
+  for (let product of Product.all) {
+    productNamesArray.push(product.title);
+    productLikesArray.push(product.clicks);
+  }
+
+  const ctx = document.getElementById('productChart').getContext('2d');
+  const productChart = new Chart(ctx, {
+    // The type of chart we want to create
+    type: 'bar',
+
+    // The data for our dataset
+    data: {
+      labels: productNamesArray,
+      datasets: [{
+        label: 'Product Likes',
+        backgroundColor: 'rgb(255, 99, 132)',
+        borderColor: 'rgb(255, 99, 132)',
+        data: productLikesArray
+      }]
+    },
+    options: {
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true
+          }
+        }]
+      }
+    }
+  });
+
+}
