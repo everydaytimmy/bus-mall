@@ -1,5 +1,4 @@
-<<<<<<< Updated upstream
-=======
+
 'use strict';
 
 //Globals
@@ -37,6 +36,7 @@ function pickNewProduct() {
   rightProductOnThePage = Product.all[2];
 
   renderNewProducts();
+
 }
 
 //Shuffle function
@@ -69,4 +69,3 @@ new Product('unicorn', 'img/unicorn.jpg');
 new Product('usb', 'img/usb.jpg');
 new Product('water-can', 'img/water-can.jpg');
 new Product('wine-glass', 'img/wine-glass.jpg');
->>>>>>> Stashed changes
