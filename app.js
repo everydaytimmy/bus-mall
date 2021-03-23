@@ -49,6 +49,74 @@ function shuffle(array) {
   }
 }
 
+//NEW DAY WORK
+//NEW DAY WORK
+//NEW DAY WORK
+const renderNewProducts = function () {
+
+  leftProductImageTag.src = leftProductOnThePage.url;
+  leftProductImageTag.alt = leftProductOnThePage.title;
+  leftProductHeaderTag.textContent = leftProductOnThePage.title;
+
+  centerProductImageTag.src = centerProductOnThePage.url;
+  centerProductImageTag.alt = centerProductOnThePage.title;
+  centerProductHeaderTag.textContent = centerProductOnThePage.title;
+
+  rightProductImageTag.src = rightProductOnThePage.url;
+  rightProductImageTag.alt = rightProductOnThePage.title;
+  rightProductHeaderTag.textContent = rightProductOnThePage.title;
+};
+
+//this is my Event listener
+const handleClickOnProduct = function (event) {
+
+  if (totalClicks < maxClicks) {
+
+    const thingWeClickedOn = event.target;
+    const id = thingWeClickedOn.id;
+
+    //track the clicks and times shown
+    if (id === 'left-product-img' || id === 'right-product-img' ||id === 'right-product-img') {
+
+      if (id === 'left-product-img') {
+        leftProductOnThePage.clicks += 1;
+      } else {
+        rightProductOnThePage.clicks += 1;
+      }
+
+      leftProductOnThePage.timesShown += 1;
+      rightProductOnThePage.timesShown += 1;
+
+      pickNewProduct();
+    }
+  }
+
+  totalClicks += 1;
+
+  //when they reach total max clicks, remove the clicky function
+  if (totalClicks === maxClicks) {
+    productImageSectionTag.removeEventListener('click', handleClickOnProduct);
+    alert('Survey is completed. Thank you.');
+
+    renderLikes();
+
+  }
+};
+
+// function renderLikes() {
+//   const likesListElem = document.getElementById('product-clicks');
+//   likesListElem.innerHTML = '';
+//   for (let i = 0; i < Product.all.length; i++) {
+//     const productPicture = Product.all[i];
+//     const productItemElem = document.createElement('li');
+//     likesListElem.appendChild(productItemElem);
+//     productItemElem.textContent = productPicture.title + ' : ' + productPicture.clicks;
+//   }
+// }
+
+//this ADDS the event listener
+productImageSectionTag.addEventListener('click', handleClickOnProduct);
+
 new Product('bag', 'img/bag.jpg');
 new Product('banana', 'img/banana.jpg');
 new Product('bathroom', 'img/bathroom.jpg');
@@ -69,3 +137,5 @@ new Product('unicorn', 'img/unicorn.jpg');
 new Product('usb', 'img/usb.jpg');
 new Product('water-can', 'img/water-can.jpg');
 new Product('wine-glass', 'img/wine-glass.jpg');
+
+pickNewProduct();
