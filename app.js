@@ -31,14 +31,37 @@ const Product = function (title, imgSrc) {
 
 Product.all = [];
 
+//pick new product
+
 function pickNewProduct() {
+
+  const previousLeft = leftProductOnThePage;
+  const previousCenter = centerProductOnThePage;
+  const previousRight = rightProductOnThePage;
+
   shuffle(Product.all);
-  leftProductOnThePage = Product.all[0];
-  centerProductOnThePage = Product.all[1];
-  rightProductOnThePage = Product.all[2];
 
+  for (let product of Product.all) {
+    if (product !== previousLeft && product !== previousCenter && product !== previousRight) {
+      leftProductOnThePage = product;
+      break;
+    }
+  }
+
+  for (let product of Product.all) {
+    if (product !== previousLeft && product !== previousCenter && product !== previousRight && product !== leftProductOnThePage) {
+      centerProductOnThePage = product;
+      break;
+    }
+  }
+
+  for (let product of Product.all) {
+    if (product !== previousLeft && product !== previousCenter && product !== previousRight && product !== leftProductOnThePage && product !== centerProductOnThePage) {
+      rightProductOnThePage = product;
+      break;
+    }
+  }
   renderNewProducts();
-
 }
 
 //Shuffle function
@@ -51,14 +74,13 @@ function shuffle(array) {
   }
 }
 
+
 //NEW DAY WORK
 const renderNewProducts = function () {
 
   leftProductImageTag.src = leftProductOnThePage.url;
   leftProductImageTag.alt = leftProductOnThePage.title;
   leftProductHeaderTag.textContent = leftProductOnThePage.title;
-
-  console.log(leftProductHeaderTag.textContent);
 
   centerProductImageTag.src = centerProductOnThePage.url;
   centerProductImageTag.alt = centerProductOnThePage.title;
@@ -67,9 +89,6 @@ const renderNewProducts = function () {
   rightProductImageTag.src = rightProductOnThePage.url;
   rightProductImageTag.alt = rightProductOnThePage.title;
   rightProductHeaderTag.textContent = rightProductOnThePage.title;
-
-  console.log(rightProductImageTag.src);
-  console.log(rightProductHeaderTag.textContent);
 };
 
 //this is my Event listener
