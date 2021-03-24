@@ -12,7 +12,7 @@ const leftProductHeaderTag = document.getElementById('left-product-h2');
 const centerProductHeaderTag = document.getElementById('center-product-h2');
 const rightProductHeaderTag = document.getElementById('right-product-h2');
 
-const maxClicks = 25;
+const maxClicks = 10;
 let totalClicks = 0;
 
 let leftProductOnThePage = null;
