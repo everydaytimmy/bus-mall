@@ -1,4 +1,12 @@
+body{
+  background-color: bisque;
+}
 
+header{
+  background-color: rgb(235, 183, 121);
+  height: 3rem;
+  padding-left: 10rem;
+}
 
 #all-products {
   display:flex;
@@ -17,5 +25,11 @@ img {
   height: 20rem;
   width: 20rem;
   border: solid black;
+}
+
+#button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 

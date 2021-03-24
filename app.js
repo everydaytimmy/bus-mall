@@ -12,6 +12,8 @@ const leftProductHeaderTag = document.getElementById('left-product-h2');
 const centerProductHeaderTag = document.getElementById('center-product-h2');
 const rightProductHeaderTag = document.getElementById('right-product-h2');
 
+const resultsButton = document.getElementById('button');
+
 const maxClicks = 10;
 let totalClicks = 0;
 
@@ -90,7 +92,7 @@ const renderNewProducts = function () {
   rightProductHeaderTag.textContent = rightProductOnThePage.title;
 };
 
-//this is my Event listener
+//this is my Event listener for pictures
 const handleClickOnProduct = function (event) {
 
   if (totalClicks < maxClicks) {
@@ -121,7 +123,6 @@ const handleClickOnProduct = function (event) {
 
   totalClicks += 1;
 
-  //when they reach total max clicks turn it off
   if (totalClicks === maxClicks) {
     productImageSectionTag.removeEventListener('click', handleClickOnProduct);
     alert('Survey is completed. Thank you.');
@@ -133,7 +134,14 @@ const handleClickOnProduct = function (event) {
   }
 };
 
-//look into this more
+productImageSectionTag.addEventListener('click', handleClickOnProduct);
+
+const handleClickOnResults = function (event) {
+  alert ();
+};
+
+resultsButton.addEventListener('click', handleClickOnResults);
+
 function renderLikes() {
   const likesListElem = document.getElementById('product-clicks');
   likesListElem.innerHTML = '';
@@ -144,9 +152,6 @@ function renderLikes() {
     productItemElem.textContent = productPicture.title + ' : ' + productPicture.clicks;
   }
 }
-
-//this ADDS the event listener
-productImageSectionTag.addEventListener('click', handleClickOnProduct);
 
 new Product('bag', 'img/bag.jpg');
 new Product('banana', 'img/banana.jpg');
@@ -171,6 +176,7 @@ new Product('wine-glass', 'img/wine-glass.jpg');
 
 pickNewProduct();
 
+//this adds the chart
 function makeProductChart() {
 
   const productNamesArray = [];
