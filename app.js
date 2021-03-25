@@ -28,7 +28,6 @@ const Product = function (title, imgSrc) {
   this.views = 0;
   this.url = imgSrc;
   Product.all.push(this);
-
 };
 
 Product.all = [];
@@ -113,9 +112,9 @@ const handleClickOnProduct = function (event) {
         rightProductOnThePage.clicks += 1;
       }
 
-      leftProductOnThePage.timesShown += 1;
-      centerProductOnThePage.timesShown += 1;
-      rightProductOnThePage.timesShown += 1;
+      leftProductOnThePage.views += 1;
+      centerProductOnThePage.views += 1;
+      rightProductOnThePage.views += 1;
 
       pickNewProduct();
     }
@@ -135,12 +134,23 @@ const handleClickOnProduct = function (event) {
 };
 
 productImageSectionTag.addEventListener('click', handleClickOnProduct);
+//End event listener for pictures
 
+
+//Event listener for results button
 const handleClickOnResults = function (event) {
-  alert ();
+  event.preventDefault();
+  const resultsOutput = [];
+
+  for (let i = 0; i < Product.all.length; i++) {
+    const string = `${Product.all[i].title} had ${Product.all[i].clicks} votes, and was seen ${Product.all[i].views} times.`;
+    resultsOutput.push(string);
+  }
+  alert(resultsOutput);
 };
 
 resultsButton.addEventListener('click', handleClickOnResults);
+//End Event Listener for results button
 
 function renderLikes() {
   const likesListElem = document.getElementById('product-clicks');
@@ -175,6 +185,29 @@ new Product('water-can', 'img/water-can.jpg');
 new Product('wine-glass', 'img/wine-glass.jpg');
 
 pickNewProduct();
+
+//Setting up local storage
+
+function setVotes() {
+  let stringVotes = JSON.stringify(Product.all);
+  localStorage.setItem('votes', stringVotes);
+
+
+}
+
+//getting from local storage
+function getVotes() {
+  let votes = localStorage.getItem('votes');
+  if (votes !== null) {
+    let parsedVotes = JSON.parse(votes);
+
+    for (let product of parsedVotes) {
+      new Product(product.title, product.clicks, product.views);
+    }
+    renderNewProducts();
+  }
+
+}
 
 //this adds the chart
 function makeProductChart() {
