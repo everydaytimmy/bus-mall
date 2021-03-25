@@ -163,49 +163,74 @@ function renderLikes() {
   }
 }
 
-new Product('bag', 'img/bag.jpg');
-new Product('banana', 'img/banana.jpg');
-new Product('bathroom', 'img/bathroom.jpg');
-new Product('boots', 'img/boots.jpg');
-new Product('breakfast', 'img/breakfast.jpg');
-new Product('bubblegun', 'img/bubblegum.jpg');
-new Product('chair', 'img/chair.jpg');
-new Product('cthulhu', 'img/cthulhu.jpg');
-new Product('dog-duck', 'img/dog-duck.jpg');
-new Product('dragon', 'img/dragon.jpg');
-new Product('pen', 'img/pen.jpg');
-new Product('pet-sweep', 'img/pet-sweep.jpg');
-new Product('scissors', 'img/scissors.jpg');
-new Product('shark', 'img/shark.jpg');
-new Product('sweep', 'img/sweep.png');
-new Product('tauntaun', 'img/tauntaun.jpg');
-new Product('unicorn', 'img/unicorn.jpg');
-new Product('usb', 'img/usb.gif');
-new Product('water-can', 'img/water-can.jpg');
-new Product('wine-glass', 'img/wine-glass.jpg');
+// new Product('bag', 'img/bag.jpg');
+// new Product('banana', 'img/banana.jpg');
+// new Product('bathroom', 'img/bathroom.jpg');
+// new Product('boots', 'img/boots.jpg');
+// new Product('breakfast', 'img/breakfast.jpg');
+// new Product('bubblegun', 'img/bubblegum.jpg');
+// new Product('chair', 'img/chair.jpg');
+// new Product('cthulhu', 'img/cthulhu.jpg');
+// new Product('dog-duck', 'img/dog-duck.jpg');
+// new Product('dragon', 'img/dragon.jpg');
+// new Product('pen', 'img/pen.jpg');
+// new Product('pet-sweep', 'img/pet-sweep.jpg');
+// new Product('scissors', 'img/scissors.jpg');
+// new Product('shark', 'img/shark.jpg');
+// new Product('sweep', 'img/sweep.png');
+// new Product('tauntaun', 'img/tauntaun.jpg');
+// new Product('unicorn', 'img/unicorn.jpg');
+// new Product('usb', 'img/usb.gif');
+// new Product('water-can', 'img/water-can.jpg');
+// new Product('wine-glass', 'img/wine-glass.jpg');
 
 pickNewProduct();
 
 //Setting up local storage
 
+const storageKey = 'votes';
+
 function setVotes() {
   let stringVotes = JSON.stringify(Product.all);
 
-  localStorage.setItem('votes', stringVotes);
-
+  localStorage.setItem(storageKey, stringVotes);
 
 }
 
 //getting from local storage
 function getVotes() {
-  let votes = localStorage.getItem('votes');
+  let votes = localStorage.getItem(storageKey);
+
   if (votes !== null) {
     let parsedVotes = JSON.parse(votes);
 
-    for (let product of parsedVotes) {
-      new Product(product.title, product.clicks, product.views);
+    for (let productData of parsedVotes) {
+      let newProduct = new Product(productData.title, productData.url);
+      newProduct.clicks = productData.clicks;
+      newProduct.views = productData.views;
     }
-    renderNewProducts();
+  }
+  else {
+    new Product('bag', 'img/bag.jpg');
+    new Product('banana', 'img/banana.jpg');
+    new Product('bathroom', 'img/bathroom.jpg');
+    new Product('boots', 'img/boots.jpg');
+    new Product('breakfast', 'img/breakfast.jpg');
+    new Product('bubblegun', 'img/bubblegum.jpg');
+    new Product('chair', 'img/chair.jpg');
+    new Product('cthulhu', 'img/cthulhu.jpg');
+    new Product('dog-duck', 'img/dog-duck.jpg');
+    new Product('dragon', 'img/dragon.jpg');
+    new Product('pen', 'img/pen.jpg');
+    new Product('pet-sweep', 'img/pet-sweep.jpg');
+    new Product('scissors', 'img/scissors.jpg');
+    new Product('shark', 'img/shark.jpg');
+    new Product('sweep', 'img/sweep.png');
+    new Product('tauntaun', 'img/tauntaun.jpg');
+    new Product('unicorn', 'img/unicorn.jpg');
+    new Product('usb', 'img/usb.gif');
+    new Product('water-can', 'img/water-can.jpg');
+    new Product('wine-glass', 'img/wine-glass.jpg');
   }
 
 }
@@ -215,6 +240,7 @@ function makeProductChart() {
 
   const productNamesArray = [];
   const productLikesArray = [];
+  // const productViewsArray = [];
 
   for (let product of Product.all) {
     productNamesArray.push(product.title);
