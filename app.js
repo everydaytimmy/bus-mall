@@ -190,6 +190,7 @@ pickNewProduct();
 
 function setVotes() {
   let stringVotes = JSON.stringify(Product.all);
+
   localStorage.setItem('votes', stringVotes);
 
 
@@ -218,6 +219,7 @@ function makeProductChart() {
   for (let product of Product.all) {
     productNamesArray.push(product.title);
     productLikesArray.push(product.clicks);
+    // productViewsArray.push(product.view);
   }
 
   const ctx = document.getElementById('productChart').getContext('2d');
@@ -232,7 +234,8 @@ function makeProductChart() {
         label: 'Product Likes',
         backgroundColor: 'rgb(255, 99, 132)',
         borderColor: 'rgb(255, 99, 132)',
-        data: productLikesArray
+        data: productLikesArray,
+        // data: productViewsArray
       }]
     },
     options: {
