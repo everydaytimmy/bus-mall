@@ -146,6 +146,7 @@ const handleClickOnResults = function (event) {
     const string = `${Product.all[i].title} had ${Product.all[i].clicks} votes, and was seen ${Product.all[i].views} times.`;
     resultsOutput.push(string);
   }
+  setVotes();
   alert(resultsOutput);
 };
 
@@ -183,19 +184,16 @@ function renderLikes() {
 // new Product('usb', 'img/usb.gif');
 // new Product('water-can', 'img/water-can.jpg');
 // new Product('wine-glass', 'img/wine-glass.jpg');
+const storageKey = 'votes';
 
-setVotes();
 getVotes();
+// setVotes();
 pickNewProduct();
-
 
 //Setting up local storage
 
-const storageKey = 'votes';
-
 function setVotes() {
   let stringVotes = JSON.stringify(Product.all);
-
   localStorage.setItem(storageKey, stringVotes);
 
 }
