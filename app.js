@@ -184,7 +184,10 @@ function renderLikes() {
 // new Product('water-can', 'img/water-can.jpg');
 // new Product('wine-glass', 'img/wine-glass.jpg');
 
+setVotes();
+getVotes();
 pickNewProduct();
+
 
 //Setting up local storage
 
