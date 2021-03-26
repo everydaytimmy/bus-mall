@@ -14,7 +14,7 @@ const rightProductHeaderTag = document.getElementById('right-product-h2');
 
 const resultsButton = document.getElementById('button');
 
-const maxClicks = 10;
+const maxClicks = 25;
 let totalClicks = 0;
 
 let leftProductOnThePage = null;
