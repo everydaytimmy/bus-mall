@@ -1,6 +1,6 @@
 # bus-mall
 
-The Bus Mall application is designed to test the preference for whimsical products intended to be showcased is an Airmall knock off inteded to be placed in buses. 
+The Bus Mall application is designed to test the preference for whimsical products intended to be showcased is an Airmall knock off and placed in buses. 
 
 After 25 attempts the Survey will be completed. Click the `results` button to see an alert with the results and store the information for the next round. 
 
